@@ -15,7 +15,7 @@ jobs:
 
       - uses: burrunan/gradle-cache-action@v1
         with:
-          arguments: :app:firebaseTestLabFullSuiteGrubhubStaging --scan
+          arguments: app:firebaseTestLabFullSuiteGrubhubStaging --scan
           gradle-version: wrapper
           gradle-build-scan-report: false
           gradle-distribution-sha-256-sum-warning: false
