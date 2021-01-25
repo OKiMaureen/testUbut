@@ -1,4 +1,4 @@
-name: Espresso full suite
+name: Visual tests
 on:
   workflow_dispatch:
   schedule:
@@ -7,7 +7,7 @@ on:
     - cron: '0 2 * * 1-5'
 
 jobs:
-  espresso_quarantined_tests:
+  visual_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
 
       - uses: burrunan/gradle-cache-action@v1
         with:
-          arguments: :app:firebaseTestLabFullSuiteGrubhubStaging --scan
+          arguments: firebaseTestLabAdhocGrubhubStaging -PflankTag=com.grubhub.android.espresso.annotation.feature_tag.Applitools -Pcom.grubhub.espressoScreenshotsEnabled=false -Pcom.grubhub.visualTestsEnabled=true --scan
           gradle-version: wrapper
           gradle-build-scan-report: false
           gradle-distribution-sha-256-sum-warning: false
@@ -50,10 +50,10 @@ jobs:
             const { count, success, failed, skipped, annotations, slack } = await script({github, context, jobName: "${{github.job}}"})
             return slack
       - uses: wearerequired/slack-messaging-action@v1
-        name: "Send Slack notification to #diner-android-e2e"
+        name: "Send Slack notification to #team-diner-android-ci"
         if: ${{ always() }}
         with:
           bot_token: ${{ secrets.GH_ACTIONS_SLACK_BOT }}
-          channel_id: C010GDTE9U4 # Id of #diner-android-e2e
+          channel_id: CRQVB7MN1 # Id of #team-diner-android-ci
           payload: >-
             ${{steps.set-result.outputs.result}}
