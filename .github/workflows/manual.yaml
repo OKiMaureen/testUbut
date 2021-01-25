@@ -1,11 +1,8 @@
-name: Visual tests
+name: Espresso full suite (manual)
 on:
   workflow_dispatch:
-  schedule:
-    # Every day at 03:00 UTC
-    # Every day at 22:00 EST
-    - cron: '0 2 * * 1-5'
-
+  
+  
 jobs:
   visual_tests:
     runs-on: ubuntu-latest
