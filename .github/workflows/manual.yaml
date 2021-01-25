@@ -1,4 +1,4 @@
-name: Espresso full suite (manual)
+name: Espresso full suite
 on:
   workflow_dispatch:
 
